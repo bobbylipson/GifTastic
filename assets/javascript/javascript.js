@@ -40,7 +40,7 @@ $(document).ready(function(){
     // Function that displays all of the gifs
     function displayGifs(){
         var animal = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=N5ICuWQWixgZHXfNRHCgqp3Xpbn7XLXP&q=animals&limit=10&offset=0&rating=R&lang=en";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=N5ICuWQWixgZHXfNRHCgqp3Xpbn7XLXP&q=" + animal + "&limit=10&offset=0&rating=R&lang=en";
         console.log(queryURL);
         $.ajax({
             url: queryURL,
@@ -83,6 +83,9 @@ $(document).ready(function(){
     $(document).on("click", ".image", function(){
         var state = $(this).attr('data-state');
         if (state == 'still'){
+            $(this).attr('src', $(this).data('animate'));
+            $(this).attr('data-state', 'animate');
+        } else {
             $(this).attr('src', $(this).data('still'));
             $(this).attr('data-state', 'still');
         }
